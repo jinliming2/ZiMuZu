@@ -9,6 +9,9 @@ if(localStorage.getItem("loop") == null) {  //后台循环周期
 if(localStorage.getItem("background") == null) {  //后台开关
     localStorage.setItem("background", "true");
 }
+if(localStorage.getItem("list") == null) {  //列表
+    localStorage.setItem("list", "[]");
+}
 /**
  * 后台事件
  * @type {number|boolean}
@@ -86,6 +89,7 @@ var success = function(xmlHttp) {
     var index = data.indexOf("<ul class=\"user-favlist\">");
     data = data.substring(index, data.indexOf("</ul>", index));
     data = data.split("</li>");
+    var old_obj = JSON.parse(localStorage.getItem("list"));
     var obj = [];
     for(var i = 0; i < data.length; i++) {
         //标题
@@ -127,6 +131,32 @@ var success = function(xmlHttp) {
             next: next,
             nextDays: nextDays
         };
+        //检查更新
+        for(var j = 0; j < old_obj.length; j++) {
+            if(old_obj[j].link == link) {
+                if(old_obj[j].updatedS != updatedS || old_obj[j].updatedE != updatedE) {
+                    //updated
+                    chrome.notifications.create(link, {
+                        type: "image",
+                        iconUrl: "img/favicon32.png",
+                        appIconMaskUrl: "img/favicon32.png",
+                        title: title,
+                        message: updated,
+                        contextMessage: chrome.i18n.getMessage("NotificationMessage"),
+                        priority: 0,
+                        buttons: [
+                            {
+                                title: chrome.i18n.getMessage("NotificationButton1")
+                            }
+                        ],
+                        imageUrl: image,
+                        isClickable: false,
+                        requireInteraction: false
+                    });
+                }
+                break;
+            }
+        }
     }
     localStorage.setItem("list", JSON.stringify(obj));
 };
@@ -152,5 +182,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
             sendResponse(true);
             break;
     }
+});
+//Notification Button Clicked
+chrome.notifications.onButtonClicked.addListener(function(notificationId, buttonIndex) {
+    chrome.tabs.create({
+        url: notificationId,
+        active: true
+    });
 });
 setLoop();

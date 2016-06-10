@@ -30,6 +30,7 @@
     "options_page": "option.html",
     "permissions": [
         "*://*.zimuzu.tv/*",
+        "*://tu.rrsub.com/*",
         "notifications"
     ]
 }

@@ -1,0 +1,22 @@
+﻿{
+    "appName": {
+        "message": "人人影视-字幕组助手",
+        "description": "应用程序的标题。"
+    },
+    "appDescription": {
+        "message": "人人影视-字幕组网站自动提醒。",
+        "description": "应用程序的描述。"
+    },
+    "btnGoTo": {
+        "message": "一键前往人人影视-字幕组",
+        "description": "打开网站"
+    },
+    "btnFavourite": {
+        "message": "我的收藏",
+        "description": "收藏页面"
+    },
+    "btnSchedule": {
+        "message": "播出时间表",
+        "description": "时间表页面"
+    }
+}

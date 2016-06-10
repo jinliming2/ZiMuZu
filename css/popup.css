@@ -1,0 +1,55 @@
+html, body {
+    width: 530px;
+    height: 400px;
+    padding: 0;
+    margin: 0;
+}
+
+button {
+    display: block;
+    width: 90%;
+    height: 25px;
+    margin: 8px auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#list {
+    overflow-y: auto;
+    max-height: 277px;
+}
+
+.item {
+    background-color: rgb(0, 62, 90);
+    color: white;
+    line-height: 50px;
+    cursor: pointer;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item:hover {
+    background-color: rgb(0, 175, 230);
+    color: white;
+}
+
+.item_title {
+    max-width: 300px;
+    padding-left: 8px;
+    width: 250px;
+    text-align: center;
+}
+
+.item_updated {
+    width: 70px;
+}
+
+.item_next {
+    padding-right: 8px;
+    width: 110px;
+    text-align: right;
+}
+

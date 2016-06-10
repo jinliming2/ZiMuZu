@@ -15,7 +15,7 @@ A Google Chrome Extension for zimuzu.tv.
 此扩展插件旨在为广大美剧迷们提供一个便捷的工具而已。**如果您认为这侵犯了您的合法权益，请联系我。**
 
 ## Release
-Google Chrome Web Store
+[Google Chrome Web Store](https://chrome.google.com/webstore/detail/nadhjjijbdhgjhhnkggeliaajkhjnjil)
 
 ## Todo List
 * ~~右上角Tip增加链接直接跳转人人影视-字幕组官网~~

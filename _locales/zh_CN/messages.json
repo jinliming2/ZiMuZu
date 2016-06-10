@@ -18,5 +18,21 @@
     "btnSchedule": {
         "message": "播出时间表",
         "description": "时间表页面"
+    },
+    "labSwitch": {
+        "message": "启用自动查询",
+        "description": "自动查询周期"
+    },
+    "labLoop": {
+        "message": "查询周期",
+        "description": "查询周期设置"
+    },
+    "NotificationMessage": {
+        "message": "您关注的剧集有更新啦！",
+        "description": "剧集更新提醒"
+    },
+    "NotificationButton1": {
+        "message": "马上去看看",
+        "description": "转到页面"
     }
 }

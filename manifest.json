@@ -25,10 +25,12 @@
             "js/background.js"
         ]
     },
-    "homepage_url": "http://www.jinliming.ml",
+    "homepage_url": "https://github.com/772807886/ZiMuZu",
     "incognito": "split",
+    "options_page": "option.html",
     "permissions": [
         "*://*.zimuzu.tv/*",
+        "*://tu.rrsub.com/*",
         "notifications"
     ]
 }

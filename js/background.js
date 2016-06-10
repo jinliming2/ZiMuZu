@@ -4,7 +4,7 @@
 "use strict";
 //Data initialize
 if(localStorage.getItem("loop") == null) {  //后台循环周期
-    localStorage.setItem("loop", "10000");
+    localStorage.setItem("loop", "300000");
 }
 if(localStorage.getItem("background") == null) {  //后台开关
     localStorage.setItem("background", "true");

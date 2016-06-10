@@ -10,10 +10,10 @@
     switch_.checked = localStorage.getItem("background") == "true";
     var time = localStorage.getItem("loop");
     labSwitch.innerHTML = chrome.i18n.getMessage("labSwitch");
-    labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "(" + (time - 0) / 1000 + "s): ";
+    labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "(" + (time - 0) / 60000 + "min): ";
     timeSlider.value = time;
     timeSlider.addEventListener("change", function() {
-        labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "(" + (timeSlider.value - 0) / 1000 + "s): ";
+        labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "(" + (timeSlider.value - 0) / 60000 + "min): ";
         localStorage.setItem("loop", timeSlider.value);
         chrome.runtime.sendMessage({code: 0}, function(response){
         });

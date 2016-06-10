@@ -2,11 +2,47 @@
  * Created by Liming on 2016/6/10.
  */
 "use strict";
+//Data initialize
+if(localStorage.getItem("loop") == null) {  //后台循环周期
+    localStorage.setItem("loop", "10000");
+}
+if(localStorage.getItem("background") == null) {  //后台开关
+    localStorage.setItem("background", "true");
+}
+/**
+ * 后台事件
+ * @type {number|boolean}
+ */
+var background = false;
+/**
+ * 空行匹配
+ * @type {RegExp}
+ */
 var regBlankLine = /(\r)+|(\n)+|(\r\n)+/g;
+/**
+ * 图片地址匹配
+ * @type {RegExp}
+ */
 var regImage = /<img src="(.+?)" \/>/;
+/**
+ * 标题匹配
+ * @type {RegExp}
+ */
 var regTitle = /<h2>[ ]*<a href="(.+?)" target="_blank">(.+?)<\/a>/;
+/**
+ * 更新匹配
+ * @type {RegExp}
+ */
 var regUpdated = /S(\d*)E(\d*)/;
+/**
+ * 下一集匹配
+ * @type {RegExp}
+ */
 var regNext = /<font class="f2">(.+?)<\/font>/;
+/**
+ * 时间匹配
+ * @type {RegExp}
+ */
 var regNextIsTime = /(\d{4})-(\d{2})-(\d{2})/;
 /**
  * REQUEST 请求
@@ -94,6 +130,27 @@ var success = function(xmlHttp) {
     }
     localStorage.setItem("list", JSON.stringify(obj));
 };
-setInterval(function() {
-    request("GET", "http://www.zimuzu.tv/user/fav", null, success);
-}, 10000);
+/**
+ * 设置后台循环
+ */
+var setLoop = function() {
+    if(background) {
+        clearInterval(background);
+    }
+    background = false;
+    if(localStorage.getItem("background") == "true") {
+        background = setInterval(function() {
+            request("GET", "http://www.zimuzu.tv/user/fav", null, success);
+        }, localStorage.getItem("loop") - 0);
+    }
+};
+//Receive Message
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    switch(message.code) {
+        case 0:  //设置查询
+            setLoop();
+            sendResponse(true);
+            break;
+    }
+});
+setLoop();

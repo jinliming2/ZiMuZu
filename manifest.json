@@ -5,16 +5,16 @@
     "default_locale": "zh_CN",
     "description": "__MSG_appDescription__",
     "icons": {
-        "64": "favicon64.png",
-        "38": "favicon38.png",
-        "32": "favicon32.png",
-        "19": "favicon19.png",
-        "16": "favicon16.ico"
+        "64": "img/favicon64.png",
+        "38": "img/favicon38.png",
+        "32": "img/favicon32.png",
+        "19": "img/favicon19.png",
+        "16": "img/favicon16.ico"
     },
     "browser_action": {
         "default_icon": {
-            "38": "favicon38.png",
-            "19": "favicon19.png"
+            "38": "img/favicon38.png",
+            "19": "img/favicon19.png"
         },
         "default_title": "__MSG_appName__",
         "default_popup": "popup.html"

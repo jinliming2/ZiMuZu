@@ -10,6 +10,25 @@
     btnGoTo.innerHTML = chrome.i18n.getMessage("btnGoTo");
     btnFavourite.innerHTML = chrome.i18n.getMessage("btnFavourite");
     btnSchedule.innerHTML = chrome.i18n.getMessage("btnSchedule");
+    //Events
+    btnGoTo.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/",
+            active: true
+        });
+    });
+    btnFavourite.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/user/fav",
+            active: true
+        });
+    });
+    btnSchedule.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/tv/eschedule",
+            active: true
+        });
+    });
     //list
     var divList = document.getElementById("list");
     var list = JSON.parse(localStorage.getItem("list"));

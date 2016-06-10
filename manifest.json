@@ -5,6 +5,7 @@
     "default_locale": "zh_CN",
     "description": "__MSG_appDescription__",
     "icons": {
+        "128": "img/favicon128.png",
         "64": "img/favicon64.png",
         "38": "img/favicon38.png",
         "32": "img/favicon32.png",
@@ -32,5 +33,6 @@
         "*://*.zimuzu.tv/*",
         "*://tu.rrsub.com/*",
         "notifications"
-    ]
+    ],
+    "short_name": "zimuzu.tv"
 }

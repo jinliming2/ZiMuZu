@@ -9,6 +9,11 @@ A Google Chrome Extension for zimuzu.tv.
 
 为人人影视-字幕组制作的一个Google Chrome浏览器扩展插件，用于为当前登录的用户提供收藏剧集快速查询、新剧集更新提醒等功能。
 
+## Statement
+扩展插件加载的内容来自[ZiMuZu.tv](http://www.zimuzu.tv/)，其内容版权归原网站所有，网站上发布的资料也归原作者所有。
+
+此扩展插件旨在为广大美剧迷们提供一个便捷的工具而已。**如果您认为这侵犯了您的合法权益，请联系我。**
+
 ## Release
 Google Chrome Web Store
 

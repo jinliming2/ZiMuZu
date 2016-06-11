@@ -99,6 +99,7 @@ var success = function(xmlHttp) {
         var link = null;
         link = regTitle.exec(data[i]);
         var title = link[2].trim();
+        title = title.replace("】【", "] [").replace("【", "[").replace("】", "]").replace("》", "").replace("《", " ");
         link = link[1].trim();
         //图片
         var image = regImage.exec(data[i])[1];

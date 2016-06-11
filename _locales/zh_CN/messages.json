@@ -1,10 +1,10 @@
 ﻿{
     "appName": {
-        "message": "人人影视-字幕组助手",
+        "message": "人人影视-字幕组助手（非官方）",
         "description": "应用程序的标题。"
     },
     "appDescription": {
-        "message": "人人影视-字幕组网站自动提醒。",
+        "message": "人人影视-字幕组网站自动提醒。（非官方）",
         "description": "应用程序的描述。"
     },
     "btnGoTo": {

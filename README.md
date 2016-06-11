@@ -30,6 +30,7 @@ A Google Chrome Extension for zimuzu.tv.
 
 ## History
 v0.1.0.0(2016/6/10)
+
 1. 扩展程序诞生
 
 2. 右上角Tip直接跳转人人影视-字幕组官网

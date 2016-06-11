@@ -113,12 +113,15 @@ var success = function(xmlHttp) {
             updated = updated[0].trim();
         }
         //下一集
-        var next = regNext.exec(data[i])[1].trim();
-        //下一集剩余天数
+        var next = null;
         var nextDays = null;
-        if(regNextIsTime.test(next)) {
-            var t = regNextIsTime.exec(next);
-            nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
+        if(regNext.test(data[i])) {
+            next = regNext.exec(data[i])[1].trim();
+            //下一集剩余天数
+            if(regNextIsTime.test(next)) {
+                var t = regNextIsTime.exec(next);
+                nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
+            }
         }
         //存储
         obj[obj.length] = {

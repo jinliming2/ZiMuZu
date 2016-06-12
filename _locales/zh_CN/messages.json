@@ -34,5 +34,17 @@
     "NotificationButton1": {
         "message": "马上去看看",
         "description": "转到页面"
+    },
+    "labLoggedOut": {
+        "message": "未登录",
+        "description": "未登录"
+    },
+    "linkLogIn": {
+        "message": "去登录",
+        "description": "跳转到登录"
+    },
+    "linkSignIn": {
+        "message": "去签到",
+        "description": "跳转到签到"
     }
 }

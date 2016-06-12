@@ -48,34 +48,6 @@ var regNext = /<font class="f2">(.+?)<\/font>/;
  */
 var regNextIsTime = /(\d{4})-(\d{2})-(\d{2})/;
 /**
- * REQUEST 请求
- * @param {string} method 请求方法
- * @param {string} url 链接
- * @param {string|null} data 数据
- * @param {function} [success] 成功回调
- * @param {function} [error] 失败回调
- * @param {function} [complete] 完成回调
- * @private
- */
-var request = function(method, url, data, success, error, complete) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if(xmlHttp.readyState == 4) {
-            if(xmlHttp.status == 200) {
-                success && success(xmlHttp);
-            } else {
-                error && error(xmlHttp);
-            }
-            complete && complete(xmlHttp);
-        }
-    };
-    xmlHttp.open(method, url, true);
-    if(method == "POST") {
-        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    }
-    xmlHttp.send(data);
-};
-/**
  * 请求成功
  * @param xmlHttp {XMLHttpRequest} 请求对象
  */
@@ -194,4 +166,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
         active: true
     });
 });
+//启动后直接查询一次
+request("GET", "http://www.zimuzu.tv/user/fav", null, success);
+//启动后设置后台查询
 setLoop();

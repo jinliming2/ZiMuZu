@@ -23,6 +23,7 @@
     "author": "Liming Jin, jinliming2@gmail.com",
     "background": {
         "scripts": [
+            "js/common.js",
             "js/background.js"
         ]
     },

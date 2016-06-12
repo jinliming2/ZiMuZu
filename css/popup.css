@@ -23,6 +23,34 @@ html, body {
     background-color: cornflowerblue;
 }
 
+#info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#user {
+    text-align: center;
+    width: 100px;
+}
+
+#head {
+    width: 80px;
+    height: 80px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+}
+
+#sign {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#link {
+    flex-grow: 1;
+}
+
 button {
     display: block;
     width: 90%;

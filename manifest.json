@@ -1,7 +1,7 @@
 ﻿{
     "manifest_version": 2,
     "name": "__MSG_appName__",
-    "version": "0.1.0.0",
+    "version": "0.2.0.0",
     "default_locale": "zh_CN",
     "description": "__MSG_appDescription__",
     "icons": {
@@ -23,6 +23,7 @@
     "author": "Liming Jin, jinliming2@gmail.com",
     "background": {
         "scripts": [
+            "js/common.js",
             "js/background.js"
         ]
     },

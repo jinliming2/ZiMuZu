@@ -1,10 +1,10 @@
 ﻿{
     "appName": {
-        "message": "人人影视-字幕组助手",
+        "message": "人人影视-字幕组助手（非官方）",
         "description": "应用程序的标题。"
     },
     "appDescription": {
-        "message": "人人影视-字幕组网站自动提醒。",
+        "message": "人人影视-字幕组网站自动提醒。（非官方）",
         "description": "应用程序的描述。"
     },
     "btnGoTo": {
@@ -34,5 +34,17 @@
     "NotificationButton1": {
         "message": "马上去看看",
         "description": "转到页面"
+    },
+    "labLoggedOut": {
+        "message": "未登录",
+        "description": "未登录"
+    },
+    "linkLogIn": {
+        "message": "去登录",
+        "description": "跳转到登录"
+    },
+    "linkSignIn": {
+        "message": "去签到",
+        "description": "跳转到签到"
     }
 }

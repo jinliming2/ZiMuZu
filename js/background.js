@@ -48,34 +48,6 @@ var regNext = /<font class="f2">(.+?)<\/font>/;
  */
 var regNextIsTime = /(\d{4})-(\d{2})-(\d{2})/;
 /**
- * REQUEST 请求
- * @param {string} method 请求方法
- * @param {string} url 链接
- * @param {string|null} data 数据
- * @param {function} [success] 成功回调
- * @param {function} [error] 失败回调
- * @param {function} [complete] 完成回调
- * @private
- */
-var request = function(method, url, data, success, error, complete) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.onreadystatechange = function() {
-        if(xmlHttp.readyState == 4) {
-            if(xmlHttp.status == 200) {
-                success && success(xmlHttp);
-            } else {
-                error && error(xmlHttp);
-            }
-            complete && complete(xmlHttp);
-        }
-    };
-    xmlHttp.open(method, url, true);
-    if(method == "POST") {
-        xmlHttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    }
-    xmlHttp.send(data);
-};
-/**
  * 请求成功
  * @param xmlHttp {XMLHttpRequest} 请求对象
  */
@@ -99,6 +71,7 @@ var success = function(xmlHttp) {
         var link = null;
         link = regTitle.exec(data[i]);
         var title = link[2].trim();
+        title = title.replace("】【", "] [").replace("【", "[").replace("】", "]").replace("》", "").replace("《", " ");
         link = link[1].trim();
         //图片
         var image = regImage.exec(data[i])[1];
@@ -113,12 +86,15 @@ var success = function(xmlHttp) {
             updated = updated[0].trim();
         }
         //下一集
-        var next = regNext.exec(data[i])[1].trim();
-        //下一集剩余天数
+        var next = null;
         var nextDays = null;
-        if(regNextIsTime.test(next)) {
-            var t = regNextIsTime.exec(next);
-            nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
+        if(regNext.test(data[i])) {
+            next = regNext.exec(data[i])[1].trim();
+            //下一集剩余天数
+            if(regNextIsTime.test(next)) {
+                var t = regNextIsTime.exec(next);
+                nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
+            }
         }
         //存储
         obj[obj.length] = {
@@ -190,4 +166,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
         active: true
     });
 });
+//启动后直接查询一次
+request("GET", "http://www.zimuzu.tv/user/fav", null, success);
+//启动后设置后台查询
 setLoop();

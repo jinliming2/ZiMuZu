@@ -4,12 +4,25 @@
     <link rel="stylesheet" href="./css/popup.css" type="text/css"/>
 </head>
 <body>
-<button id="go_to">1</button>
-<button id="favourite">2</button>
-<button id="schedule">3</button>
+<div id="info">
+    <div id="user">
+        <img id="head" src="./img/default_head.png"/>
+        <div id="username"></div>
+        <div>
+            <span id="level"></span>&nbsp;&nbsp;
+            <span id="sign"></span>
+        </div>
+    </div>
+    <div id="link">
+        <button id="go_to"></button>
+        <button id="favourite"></button>
+        <button id="schedule"></button>
+    </div>
+</div>
 <hr>
 <div id="list">
 </div>
+<script src="./js/common.js"></script>
 <script src="./js/popup.js"></script>
 </body>
 </html>

@@ -2,6 +2,47 @@
  * Created by Liming on 2016/6/10.
  */
 "use strict";
+var userHead = document.getElementById("head");
+var userUsername = document.getElementById("username");
+var userLevel = document.getElementById("level");
+var userSign = document.getElementById("sign");
+
+/**
+ * 请求成功
+ * @param xmlHttp {XMLHttpRequest} 请求对象
+ */
+var getUserData = function(xmlHttp) {
+    var json = JSON.parse(xmlHttp.responseText);
+    if(json && json.status && json.status == 1 && json.data && json.data.userinfo) {
+        userHead.src = json.data.userinfo.avatar_t;
+        userUsername.innerHTML = json.data.userinfo.nickname;
+        userLevel.innerHTML = json.data.userinfo.group_name;
+        userSign.innerHTML = chrome.i18n.getMessage("linkSignIn");
+        userSign.removeEventListener("click", jumpToLogIn);
+        userSign.addEventListener("click", jumpToSignIn);
+    }
+};
+
+/**
+ * 跳转到登录页面
+ */
+var jumpToLogIn = function() {
+    chrome.tabs.create({
+        url: "http://www.zimuzu.tv/user/login",
+        active: true
+    });
+};
+
+/**
+ * 跳转到签到页面
+ */
+var jumpToSignIn = function() {
+    chrome.tabs.create({
+        url: "http://www.zimuzu.tv/user/sign",
+        active: true
+    });
+};
+
 (function() {
     //Buttons
     var btnGoTo = document.getElementById("go_to");
@@ -63,4 +104,10 @@
         });
         divList.appendChild(item);
     }
+    //user information
+    userUsername.innerHTML = chrome.i18n.getMessage("labLoggedOut");
+    userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
+    userSign.removeEventListener("click", jumpToSignIn);
+    userSign.addEventListener("click", jumpToLogIn);
+    request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null, getUserData);
 })();

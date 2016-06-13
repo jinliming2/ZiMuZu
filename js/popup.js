@@ -20,6 +20,13 @@ var getUserData = function(xmlHttp) {
         userSign.innerHTML = chrome.i18n.getMessage("linkSignIn");
         userSign.removeEventListener("click", jumpToLogIn);
         userSign.addEventListener("click", jumpToSignIn);
+    } else {
+        userHead.src = "./img/default_head.png";
+        userUsername.innerHTML = chrome.i18n.getMessage("labLoggedOut");
+        userLevel.innerHTML = "";
+        userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
+        userSign.removeEventListener("click", jumpToSignIn);
+        userSign.addEventListener("click", jumpToLogIn);
     }
 };
 
@@ -80,7 +87,8 @@ var jumpToSignIn = function() {
         var updated = document.createElement("div");
         var next = document.createElement("div");
         title.innerHTML = list[i].title;
-        image.src = list[i].image;
+        image.dataset.src = list[i].image;
+        image.setAttribute("height", "76px");
         updated.innerHTML = list[i].updated;
         if(list[i].nextDays) {
             next.innerHTML = list[i].next + "(" + list[i].nextDays + ")";
@@ -105,9 +113,18 @@ var jumpToSignIn = function() {
         divList.appendChild(item);
     }
     //user information
-    userUsername.innerHTML = chrome.i18n.getMessage("labLoggedOut");
+    userUsername.innerHTML = chrome.i18n.getMessage("labLoading");
     userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
     userSign.removeEventListener("click", jumpToSignIn);
     userSign.addEventListener("click", jumpToLogIn);
     request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null, getUserData);
+    //load image
+    setTimeout(function() {
+        var img = document.getElementsByTagName("img");
+        for(var i = 0; i < img.length; i++) {
+            if(img[i].dataset.src) {
+                img[i].src = img[i].dataset.src;
+            }
+        }
+    }, 1);
 })();

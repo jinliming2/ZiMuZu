@@ -35,6 +35,10 @@
         "message": "马上去看看",
         "description": "转到页面"
     },
+    "labLoading": {
+        "message": "正在加载",
+        "description": "正在加载"
+    },
     "labLoggedOut": {
         "message": "未登录",
         "description": "未登录"

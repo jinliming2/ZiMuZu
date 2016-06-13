@@ -13,6 +13,7 @@
  * @private
  */
 var request = function(method, url, data, success, error, complete) {
+    data = data || null;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState == 4) {

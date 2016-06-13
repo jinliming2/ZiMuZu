@@ -168,5 +168,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
 });
 //启动后直接查询一次
 request("GET", "http://www.zimuzu.tv/user/fav", null, success);
+//启动后请求一次用户数据，起到签到的作用（现在是登录）
+request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null);
 //启动后设置后台查询
 setLoop();

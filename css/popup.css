@@ -81,6 +81,11 @@ button {
     color: white;
 }
 
+.item_image {
+    width: 57px;
+    height: 76px;
+}
+
 .item_title {
     max-width: 300px;
     padding-left: 8px;

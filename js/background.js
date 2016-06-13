@@ -43,6 +43,11 @@ var regUpdated = /S(\d*)E(\d*)/;
  */
 var regNext = /<font class="f2">(.+?)<\/font>/;
 /**
+ * 状态匹配
+ * @type {RegExp}
+ */
+var regStatus = /<span class="ts">\((.+?)\)<\/span>/;
+/**
  * 时间匹配
  * @type {RegExp}
  */
@@ -88,13 +93,15 @@ var success = function(xmlHttp) {
         //下一集
         var next = null;
         var nextDays = null;
-        if(regNext.test(data[i])) {
+        if(regNext.test(data[i])) {  //下一集信息
             next = regNext.exec(data[i])[1].trim();
             //下一集剩余天数
             if(regNextIsTime.test(next)) {
                 var t = regNextIsTime.exec(next);
                 nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
             }
+        } else if(regStatus.test(data[i])) {  //状态信息
+            next = regStatus.exec(data[i])[1].trim();
         }
         //存储
         obj[obj.length] = {

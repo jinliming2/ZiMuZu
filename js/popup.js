@@ -88,7 +88,6 @@ var jumpToSignIn = function() {
         var next = document.createElement("div");
         title.innerHTML = list[i].title;
         image.dataset.src = list[i].image;
-        image.setAttribute("height", "76px");
         updated.innerHTML = list[i].updated;
         if(list[i].nextDays) {
             next.innerHTML = list[i].next + "(" + list[i].nextDays + ")";
@@ -97,6 +96,7 @@ var jumpToSignIn = function() {
         }
         item.classList.add("item");
         title.classList.add("item_title");
+        image.classList.add("item_image");
         updated.classList.add("item_updated");
         next.classList.add("item_next");
         item.appendChild(image);
@@ -126,5 +126,5 @@ var jumpToSignIn = function() {
                 img[i].src = img[i].dataset.src;
             }
         }
-    }, 1);
+    }, 0);
 })();

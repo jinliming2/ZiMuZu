@@ -34,6 +34,9 @@ A Google Chrome Extension for zimuzu.tv.
 
 2. 右上角Tip图片延迟加载，加快Tip弹出的速度。
 
+3. 电影节目显示为上映信息
+
+
 ###v0.2.0.0(2016/6/12)
 1. 右上角Tip显示当前用户登录状态
 

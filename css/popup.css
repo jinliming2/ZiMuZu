@@ -74,6 +74,8 @@ button {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    -webkit-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
 }
 
 .item:hover {
@@ -103,3 +105,21 @@ button {
     text-align: right;
 }
 
+.today_date {
+    padding-left: 8px;
+    font-size: 18px;
+}
+
+.today_show {
+    margin-left: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    float: left;
+    -webkit-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
+}
+
+.today_show:hover {
+    text-decoration: underline;
+    background-color: skyblue;
+}

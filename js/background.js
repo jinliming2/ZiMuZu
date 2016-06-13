@@ -18,11 +18,6 @@ if(localStorage.getItem("list") == null) {  //列表
  */
 var background = false;
 /**
- * 空行匹配
- * @type {RegExp}
- */
-var regBlankLine = /(\r)+|(\n)+|(\r\n)+/g;
-/**
  * 图片地址匹配
  * @type {RegExp}
  */

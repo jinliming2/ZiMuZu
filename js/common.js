@@ -3,6 +3,12 @@
  */
 "use strict";
 /**
+ * 空行匹配
+ * @type {RegExp}
+ */
+var regBlankLine = /(\r)+|(\n)+|(\r\n)+/g;
+
+/**
  * REQUEST 请求
  * @param {string} method 请求方法
  * @param {string} url 链接
@@ -13,6 +19,7 @@
  * @private
  */
 var request = function(method, url, data, success, error, complete) {
+    data = data || null;
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function() {
         if(xmlHttp.readyState == 4) {

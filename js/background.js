@@ -18,11 +18,6 @@ if(localStorage.getItem("list") == null) {  //列表
  */
 var background = false;
 /**
- * 空行匹配
- * @type {RegExp}
- */
-var regBlankLine = /(\r)+|(\n)+|(\r\n)+/g;
-/**
  * 图片地址匹配
  * @type {RegExp}
  */
@@ -42,6 +37,11 @@ var regUpdated = /S(\d*)E(\d*)/;
  * @type {RegExp}
  */
 var regNext = /<font class="f2">(.+?)<\/font>/;
+/**
+ * 状态匹配
+ * @type {RegExp}
+ */
+var regStatus = /<span class="ts">\((.+?)\)<\/span>/;
 /**
  * 时间匹配
  * @type {RegExp}
@@ -88,13 +88,15 @@ var success = function(xmlHttp) {
         //下一集
         var next = null;
         var nextDays = null;
-        if(regNext.test(data[i])) {
+        if(regNext.test(data[i])) {  //下一集信息
             next = regNext.exec(data[i])[1].trim();
             //下一集剩余天数
             if(regNextIsTime.test(next)) {
                 var t = regNextIsTime.exec(next);
                 nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
             }
+        } else if(regStatus.test(data[i])) {  //状态信息
+            next = regStatus.exec(data[i])[1].trim();
         }
         //存储
         obj[obj.length] = {
@@ -168,5 +170,7 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
 });
 //启动后直接查询一次
 request("GET", "http://www.zimuzu.tv/user/fav", null, success);
+//启动后请求一次用户数据，起到签到的作用（现在是登录）
+request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null);
 //启动后设置后台查询
 setLoop();

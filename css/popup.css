@@ -1,6 +1,5 @@
 html, body {
     width: 530px;
-    height: 400px;
     padding: 0;
     margin: 0;
 }
@@ -75,11 +74,18 @@ button {
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
+    -webkit-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
 }
 
 .item:hover {
     background-color: rgb(0, 175, 230);
     color: white;
+}
+
+.item_image {
+    width: 57px;
+    height: 76px;
 }
 
 .item_title {
@@ -99,3 +105,21 @@ button {
     text-align: right;
 }
 
+.today_date {
+    padding-left: 8px;
+    font-size: 18px;
+}
+
+.today_show {
+    margin-left: 16px;
+    line-height: 24px;
+    cursor: pointer;
+    float: left;
+    -webkit-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
+}
+
+.today_show:hover {
+    text-decoration: underline;
+    background-color: skyblue;
+}

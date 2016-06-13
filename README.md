@@ -29,7 +29,7 @@ A Google Chrome Extension for zimuzu.tv.
 * [ ] 右上角Tip界面的显示美化
 
 ## History
-###v0.3.0.0()
+###v0.3.0.0(2016/6/13)
 1. 开启浏览器自动签到
 
 2. 右上角Tip图片延迟加载，加快Tip弹出的速度。

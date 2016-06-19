@@ -202,3 +202,22 @@ var getSchedule = function(xmlHttp) {
         }
     }, 0);
 })();
+
+/**
+ * 搜索框
+ */
+(function () {
+    var div = document.getElementById("search");
+    var input = document.getElementById("search_input");
+    div.addEventListener("click", function () {
+        input.focus();
+    });
+    input.addEventListener("keydown", function(e) {
+        if(e.keyCode == 13 && input.value.length > 0) {
+            chrome.tabs.create({
+                url: "http://www.zimuzu.tv/search?keyword=" + input.value,
+                active: true
+            });
+        }
+    });
+})();

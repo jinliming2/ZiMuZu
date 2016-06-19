@@ -74,6 +74,7 @@ button {
     justify-content: space-around;
     align-items: center;
     background-color: #333;
+    padding: 5px 0;
 }
 
 #user {
@@ -141,11 +142,12 @@ button {
 }
 
 #search_input {
-    width: calc(100% - 60px);
+    width: 360px;
     border: none;
     outline: none;
     background-color: transparent;
     font-size: 16px;
+    color: whitesmoke;
 }
 
 #list {

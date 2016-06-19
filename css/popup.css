@@ -2,6 +2,7 @@ html, body {
     width: 530px;
     padding: 0;
     margin: 0;
+    -webkit-font-smoothing: antialiased;
 }
 
 ::-webkit-scrollbar {
@@ -22,10 +23,62 @@ html, body {
     background-color: cornflowerblue;
 }
 
+button {
+    padding: 0.8125em 1.5em 0.75em 1.5em;
+    margin: 0.5em 0.5em 0.5em 0;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: background-color 300ms ease-out;
+    transition: background-color 300ms ease-out;
+    border: solid 0 #238896;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #2daebf;
+    color: white;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-animation: 2s infinite;
+    animation: 2s infinite;
+}
+
+.bluePulse {
+    -webkit-animation-name: bluePulse;
+    animation-name: bluePulse;
+}
+
+.bluePulse:hover {
+    background-color: #2daebf;
+    -webkit-box-shadow: 0 0 18px #2daebf;
+    -webkit-animation: none;
+    animation: none;
+}
+
+@-webkit-keyframes bluePulse {
+    from {
+        background-color: #007d9a;
+        -webkit-box-shadow: 0 0 9px #333;
+    }
+    50% {
+        background-color: #2daebf;
+        -webkit-box-shadow: 0 0 18px #2daebf;
+    }
+    to {
+        background-color: #007d9a;
+        -webkit-box-shadow: 0 0 9px #333;
+    }
+}
+
+.hide {
+    display: none;
+}
+
 #info {
+    display: -webkit-flex;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #333;
+    padding: 5px 0;
 }
 
 #user {
@@ -34,30 +87,71 @@ html, body {
 }
 
 #head {
-    width: 80px;
-    height: 80px;
-    -webkit-border-radius: 40px;
-    -moz-border-radius: 40px;
-    border-radius: 40px;
+    width: 60px;
+    height: 60px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+}
+
+#username {
+    color: white;
+    font-weight: bold;
+}
+
+#level {
+    color: white;
 }
 
 #sign {
-    cursor: pointer;
     text-decoration: underline;
+    cursor: pointer;
+    color: #007d9a;
 }
 
-#link {
+#sign:hover {
+    color: #2daebf;
+}
+
+#website {
+    display: -webkit-flex;
+    display: flex;
     flex-grow: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
-button {
-    display: block;
-    width: 90%;
-    height: 25px;
-    margin: 8px auto;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+#link button:last-child {
+    margin-right: 0;
+}
+
+#search {
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 36px;
+    width: 96%;
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: text;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+#search_icon {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+#search_input {
+    width: 360px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: whitesmoke;
 }
 
 #list {
@@ -70,6 +164,7 @@ button {
     color: white;
     line-height: 50px;
     cursor: pointer;
+    display: -webkit-flex;
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;

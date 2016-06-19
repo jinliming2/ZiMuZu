@@ -6,6 +6,9 @@ var userHead = document.getElementById("head");
 var userUsername = document.getElementById("username");
 var userLevel = document.getElementById("level");
 var userSign = document.getElementById("sign");
+var btnGoTo = document.getElementById("go_to");
+var btnFavourite = document.getElementById("favourite");
+var btnSchedule = document.getElementById("schedule");
 
 /**
  * 今天的播出表
@@ -36,6 +39,7 @@ var getUserData = function(xmlHttp) {
         userSign.innerHTML = chrome.i18n.getMessage("linkSignIn");
         userSign.removeEventListener("click", jumpToLogIn);
         userSign.addEventListener("click", jumpToSignIn);
+        btnFavourite.classList.remove("hide");
     } else {
         userHead.src = "./img/default_head.png";
         userUsername.innerHTML = chrome.i18n.getMessage("labLoggedOut");
@@ -43,6 +47,7 @@ var getUserData = function(xmlHttp) {
         userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
         userSign.removeEventListener("click", jumpToSignIn);
         userSign.addEventListener("click", jumpToLogIn);
+        btnFavourite.classList.add("hide");
     }
 };
 
@@ -124,9 +129,6 @@ var getSchedule = function(xmlHttp) {
  */
 (function() {
     //Buttons
-    var btnGoTo = document.getElementById("go_to");
-    var btnFavourite = document.getElementById("favourite");
-    var btnSchedule = document.getElementById("schedule");
     btnGoTo.innerHTML = chrome.i18n.getMessage("btnGoTo");
     btnFavourite.innerHTML = chrome.i18n.getMessage("btnFavourite");
     btnSchedule.innerHTML = chrome.i18n.getMessage("btnSchedule");
@@ -201,4 +203,23 @@ var getSchedule = function(xmlHttp) {
             }
         }
     }, 0);
+})();
+
+/**
+ * 搜索框
+ */
+(function () {
+    var div = document.getElementById("search");
+    var input = document.getElementById("search_input");
+    div.addEventListener("click", function () {
+        input.focus();
+    });
+    input.addEventListener("keydown", function(e) {
+        if(e.keyCode == 13 && input.value.length > 0) {
+            chrome.tabs.create({
+                url: "http://www.zimuzu.tv/search?keyword=" + input.value,
+                active: true
+            });
+        }
+    });
 })();

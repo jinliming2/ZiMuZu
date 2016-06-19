@@ -38,7 +38,6 @@ A Google Chrome Extension for zimuzu.tv.
 
 4. 右上角Tip显示今日播出节目表
 
-
 ###v0.2.0.0(2016/6/12)
 1. 右上角Tip显示当前用户登录状态
 

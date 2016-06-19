@@ -68,6 +68,10 @@ button {
     }
 }
 
+.hide {
+    display: none;
+}
+
 #info {
     display: -webkit-flex;
     display: flex;

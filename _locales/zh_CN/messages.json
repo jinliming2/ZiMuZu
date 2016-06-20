@@ -27,6 +27,22 @@
         "message": "查询周期",
         "description": "查询周期设置"
     },
+    "labRating": {
+        "message": "评分",
+        "description": "对扩展插件进行评价"
+    },
+    "labBug": {
+        "message": "错误反馈",
+        "description": "用户反馈遇到的Bug"
+    },
+    "labRepository": {
+        "message": "开源项目仓库",
+        "description": "GitHub开源仓库"
+    },
+    "labDonate": {
+        "message": "捐助",
+        "description": "Donate"
+    },
     "NotificationMessage": {
         "message": "您关注的剧集有更新啦！",
         "description": "剧集更新提醒"

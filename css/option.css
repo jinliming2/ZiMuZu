@@ -8,6 +8,8 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
     -webkit-font-smoothing: antialiased;
 }
 
@@ -29,7 +31,7 @@ html, body {
     background-color: cornflowerblue;
 }
 
-input {
+* {
     outline: none;
 }
 
@@ -104,7 +106,7 @@ input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     top: -5px;
     height: 30px;
-    width: 20px;
+    width: 15px;
     background: none repeat scroll 0 0 #ddd;
     -webkit-transform: translateY(-4px);
     transform: translateY(-4px);
@@ -118,6 +120,27 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb:hover {
     background-color: #26ca28;
+}
+
+button {
+    padding: 0.8125em 1.5em 0.75em 1.5em;
+    margin: 0 0 0 0.5em;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-transition: all 300ms ease-out;
+    transition: all 300ms ease-out;
+    border: solid 0 #238896;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #444;
+    -webkit-box-shadow: 0 0 18px #333;
 }
 
 #main {
@@ -143,9 +166,10 @@ input[type="range"]::-webkit-slider-thumb:hover {
     border-top-right-radius: 10px;
 }
 
-#body div {
+#body > div {
     padding: 8px;
     font-size: 16px;
+    min-height: 35px;
     display: -webkit-flex;
     display: flex;
     justify-content: space-between;

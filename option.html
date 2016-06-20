@@ -7,43 +7,55 @@
     <meta name="author" content="金黎明,Liming Jin,jinliming2@gmail.com,TianJin China"/>
     <title>ZiMuZu.tv</title>
     <link rel="shortcut icon" href="img/favicon16.ico"/>
+    <link rel="stylesheet" href="./css/option.css"/>
 </head>
 <body>
-<div>
-    <h2>扩展程序还在开发阶段，当前页面暂时没有做美化，请见谅，先凑合用！</h2>
+<div id="main">
+    <div id="title">
+        Option 选项
+    </div>
+    <div id="body">
+        <div>
+            <span id="labSwitch"></span>
+            <div class="switch">
+                <input id="switch" type="checkbox">
+                <label for="switch"></label>
+            </div>
+        </div>
+        <div>
+            <label id="labLoop" for="loop"></label>
+            <input id="loop" type="range" min="300000" max="3600000" step="60000">
+        </div>
+        <div>
+            <label id="labRating"></label>
+            <div>
+                <button id="rating">Google Chrome Web Store Reviews</button>
+            </div>
+        </div>
+        <div>
+            <label id="labBug"></label>
+            <div>
+                <button id="issues">GitHub Issues</button>
+                <button id="support">Google Chrome Web Store Support</button>
+            </div>
+        </div>
+        <div>
+            <label id="labRepository"></label>
+            <div>
+                <button id="gitHub">GitHub</button>
+            </div>
+        </div>
+        <div>
+            <label id="labDonate"></label>
+            <div>
+                <button id="aliPay">AliPay 支付宝</button>
+                <button id="weChat">WeChat 微信</button>
+                <button id="payPal">PayPal</button>
+            </div>
+        </div>
+    </div>
 </div>
-<div>
-    <input id="switch" type="checkbox"><label id="labSwitch" for="switch"></label>
-</div>
-<div>
-    <label id="labLoop" for="loop"></label>
-    <input id="loop" type="range" min="300000" max="3600000" step="60000">
-</div>
-<div>
-    <h6>这个扩展程序是我的第一个Chrome扩展程序作品，我现在也是处于摸索尝试状态。</h6>
-    <h6>
-        如果您发现扩展程序存在任何的Bug，请到
-        <a href="https://github.com/772807886/ZiMuZu/issues" target="_blank">
-            GitHub Issues
-        </a>
-        或是
-        <a href="https://chrome.google.com/webstore/detail/nadhjjijbdhgjhhnkggeliaajkhjnjil/support" target="_blank">
-            Google Chrome Web Store Support
-        </a>
-        进行反馈！
-    </h6>
-    <h6>
-        欢迎到
-        <a href="https://chrome.google.com/webstore/detail/nadhjjijbdhgjhhnkggeliaajkhjnjil/reviews" target="_blank">
-            Google Chrome Web Store Reviews
-        </a>
-        给这个扩展程序进行评分！
-    </h6>
-    <h6>
-        如果您也会编程，懂得javascript，也想为这个扩展程序做出贡献，请访问此项目的
-        <a href="https://github.com/772807886/ZiMuZu" target="_blank">GitHub开源项目仓库</a>。
-    </h6>
-</div>
+<div id="donate"></div>
 <script src="js/option.js"></script>
 </body>
 </html>

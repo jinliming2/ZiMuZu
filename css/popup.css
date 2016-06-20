@@ -23,6 +23,10 @@ html, body {
     background-color: cornflowerblue;
 }
 
+* {
+    outline: none;
+}
+
 button {
     padding: 0.8125em 1.5em 0.75em 1.5em;
     margin: 0.5em 0.5em 0.5em 0;

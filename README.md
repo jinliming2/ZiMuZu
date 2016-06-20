@@ -29,7 +29,7 @@ A Google Chrome Extension for zimuzu.tv.
 * [x] ~~右上角Tip界面的显示美化~~
 
 ## History
-###v1.0.0()
+###v1.0.0(2016/6/20)
 1. 选项设置页面美化样式
 
 ###v0.4.0.0(2016/6/19)

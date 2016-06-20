@@ -175,3 +175,12 @@ button:hover {
     justify-content: space-between;
     align-items: center;
 }
+
+#donate {
+    display: none;
+    position: fixed;
+    text-align: center;
+    left: calc(50% - 256px);
+    top: calc(50% - 256px);
+    z-index: 100;
+}

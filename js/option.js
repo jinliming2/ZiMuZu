@@ -54,8 +54,8 @@
     /** Donate标签 */
     var labDonate = document.getElementById("labDonate");
     labDonate.innerHTML = chrome.i18n.getMessage("labDonate");
-    //document.getElementById("aliPay").addEventListener("click", aliPay);
-    //document.getElementById("weChat").addEventListener("click", weChat);
+    document.getElementById("aliPay").addEventListener("click", aliPay);
+    document.getElementById("weChat").addEventListener("click", weChat);
     document.getElementById("payPal").addEventListener("click", payPal);
 })();
 
@@ -87,18 +87,19 @@ function gitHub() {
     });
 }
 
+var donate = document.getElementById("donate");
+donate.addEventListener("click", function() {
+    donate.style.display = "none";
+});
+
 function aliPay() {
-    chrome.tabs.create({
-        url: "",
-        active: true
-    });
+    donate.innerHTML = "<img src=\"./img/AliPay.jpg\">";
+    donate.style.display = "block";
 }
 
 function weChat() {
-    chrome.tabs.create({
-        url: "",
-        active: true
-    });
+    donate.innerHTML = "<img src=\"./img/mmqrcode1459686420375.png\">";
+    donate.style.display = "block";
 }
 
 function payPal() {

@@ -184,3 +184,41 @@ button:hover {
     top: calc(50% - 256px);
     z-index: 100;
 }
+
+#tip {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+#tip_main {
+    width: 600px;
+    min-height: 300px;
+    background-color: #CCC;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
+}
+
+#tip_title {
+    font-size: 32px;
+    line-height: 64px;
+    font-weight: bold;
+}
+
+#tip_body {
+    font-size: 18px;
+    line-height: 32px;
+}

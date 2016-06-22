@@ -37,3 +37,18 @@ var request = function(method, url, data, success, error, complete) {
     }
     xmlHttp.send(data);
 };
+
+/**
+ * 取GET参数
+ *
+ * @return {string} GET参数
+ */
+var getQueryString = function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+    var r = window.location.search.substr(1).match(reg);
+    if(r != null) {
+        return decodeURI(r[2]);
+    } else {
+        return "";
+    }
+}

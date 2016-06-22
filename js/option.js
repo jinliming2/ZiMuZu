@@ -57,6 +57,22 @@
     document.getElementById("aliPay").addEventListener("click", aliPay);
     document.getElementById("weChat").addEventListener("click", weChat);
     document.getElementById("payPal").addEventListener("click", payPal);
+    
+    /** Tip */
+    var tip = document.getElementById("tip");
+    var tip_ok = document.getElementById("tip_ok");
+    tip_ok.innerHTML = chrome.i18n.getMessage("tipOK");
+    tip_ok.addEventListener("click", function() {
+        tip.removeAttribute("style");
+    });
+    if(getQueryString("ac") === "install") {
+        var tip_title = document.getElementById("tip_title");
+        var tip_body = document.getElementById("tip_body");
+        tip_title.innerHTML = chrome.i18n.getMessage("tipInstallTitle");
+        tip_body.innerHTML = chrome.i18n.getMessage("tipInstallBody") + chrome.app.getDetails().version;
+        tip.style.display = "flex";
+        tip.style.display = "-webkit-flex";
+    }
 })();
 
 function rating() {

@@ -174,3 +174,13 @@ request("GET", "http://www.zimuzu.tv/user/fav", null, success);
 request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null);
 //启动后设置后台查询
 setLoop();
+
+//安装提示
+chrome.runtime.onInstalled.addListener(function (details) {
+    if (details.reason == "install") {
+        chrome.tabs.create({
+            url: chrome.extension.getURL("option.html?ac=install")
+        });
+    } else if (details.reason == "update") {
+    }
+});

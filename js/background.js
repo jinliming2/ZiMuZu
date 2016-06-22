@@ -4,7 +4,7 @@
 "use strict";
 //Data initialize
 if(localStorage.getItem("loop") == null) {  //后台循环周期
-    localStorage.setItem("loop", "300000");
+    localStorage.setItem("loop", "1800000");
 }
 if(localStorage.getItem("background") == null) {  //后台开关
     localStorage.setItem("background", "true");
@@ -174,3 +174,13 @@ request("GET", "http://www.zimuzu.tv/user/fav", null, success);
 request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null);
 //启动后设置后台查询
 setLoop();
+
+//安装提示
+chrome.runtime.onInstalled.addListener(function (details) {
+    if (details.reason == "install") {
+        chrome.tabs.create({
+            url: chrome.extension.getURL("option.html?ac=install")
+        });
+    } else if (details.reason == "update") {
+    }
+});

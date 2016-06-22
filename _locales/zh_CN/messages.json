@@ -66,5 +66,17 @@
     "linkSignIn": {
         "message": "去签到",
         "description": "跳转到签到"
+    },
+    "tipInstallTitle": {
+        "message": "安装成功",
+        "description": "安装成功提示"
+    },
+    "tipInstallBody": {
+        "message": "您已成功安装“人人影视-字幕组”助手！<br>当前版本号：",
+        "description": "安装成功提示"
+    },
+    "tipOK": {
+        "message": "朕知道了",
+        "description": "提示界面的确定按钮"
     }
 }

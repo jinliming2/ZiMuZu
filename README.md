@@ -29,6 +29,9 @@ A Google Chrome Extension for zimuzu.tv.
 * [x] ~~右上角Tip界面的显示美化~~
 
 ## History
+###v1.0.2(2016/6/28)
+1. 增加启动浏览器自动签到的开关
+
 ###v1.0.1(2016/6/22)
 1. 首次安装成功提示
 

@@ -6,6 +6,7 @@
     /** 开关标签 */
     var labSwitch = document.getElementById("labSwitch");
     labSwitch.innerHTML = chrome.i18n.getMessage("labSwitch");
+    labSwitch.parentNode.setAttribute("title", chrome.i18n.getMessage("tipTitleBackground"));
 
     /** 开关按钮 */
     var switch_ = document.getElementById("switch");
@@ -20,6 +21,7 @@
     var labLoop = document.getElementById("labLoop");
     var time = localStorage.getItem("loop");
     labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "（" + (time - 0) / 60000 + "min）";
+    labLoop.parentNode.setAttribute("title", chrome.i18n.getMessage("tipTitleLoop"));
 
     /** 周期Slider */
     var timeSlider = document.getElementById("loop");
@@ -33,6 +35,18 @@
         localStorage.setItem("loop", timeSlider.value);
         chrome.runtime.sendMessage({code: 0}, function(response) {
         });
+    });
+
+    /** 自动签到标签 */
+    var labSign = document.getElementById("labSign");
+    labSign.innerHTML = chrome.i18n.getMessage("labSign");
+    labSign.parentNode.setAttribute("title", chrome.i18n.getMessage("tipTitleSign"));
+    
+    /** 自动签到按钮 */
+    var sign = document.getElementById("sign");
+    sign.checked = localStorage.getItem("autoSign") == "true";
+    sign.addEventListener("change", function() {
+        localStorage.setItem("autoSign", sign.checked);
     });
 
     /** 评价标签 */
@@ -55,6 +69,7 @@
     var labDonate = document.getElementById("labDonate");
     labDonate.innerHTML = chrome.i18n.getMessage("labDonate");
     document.getElementById("aliPay").addEventListener("click", aliPay);
+    document.getElementById("qq").addEventListener("click", qq);
     document.getElementById("weChat").addEventListener("click", weChat);
     document.getElementById("payPal").addEventListener("click", payPal);
     
@@ -113,8 +128,13 @@ function aliPay() {
     donate.style.display = "block";
 }
 
+function qq() {
+    donate.innerHTML = "<img src=\"./img/QQ_Donate.png\">";
+    donate.style.display = "block";
+}
+
 function weChat() {
-    donate.innerHTML = "<img src=\"./img/mmqrcode1459686420375.png\">";
+    donate.innerHTML = "<img src=\"./img/MicroMessage_Donate.png\">";
     donate.style.display = "block";
 }
 

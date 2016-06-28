@@ -32,7 +32,7 @@
         "description": "对扩展插件进行评价"
     },
     "labBug": {
-        "message": "错误反馈",
+        "message": "意见或错误反馈",
         "description": "用户反馈遇到的Bug"
     },
     "labRepository": {
@@ -78,5 +78,21 @@
     "tipOK": {
         "message": "朕知道了",
         "description": "提示界面的确定按钮"
+    },
+    "labSign": {
+        "message": "启动浏览器自动签到",
+        "description": "自动签到标签"
+    },
+    "tipTitleBackground": {
+        "message": "当浏览器运行时，扩展程序会每隔一定时间查询一次收藏更新。",
+        "description": "自动查询提示"
+    },
+    "tipTitleLoop": {
+        "message": "设置后台查询的频率，仅当启用自动查询后生效。",
+        "description": "查询周期提示"
+    },
+    "tipTitleSign": {
+        "message": "开启后，启动浏览器时会自动进行签到。关闭后，必须手动点击扩展程序上的“去签到”链接，手动签到",
+        "description": "自动签到提示"
     }
 }

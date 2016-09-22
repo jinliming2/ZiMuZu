@@ -3,6 +3,10 @@
  */
 "use strict";
 (function() {
+    /** 周期标签 */
+    var labLoop = document.getElementById("labLoop");
+    var divLoop = labLoop.parentNode;
+
     /** 开关标签 */
     var labSwitch = document.getElementById("labSwitch");
     labSwitch.innerHTML = chrome.i18n.getMessage("labSwitch");
@@ -15,10 +19,11 @@
         localStorage.setItem("background", switch_.checked);
         chrome.runtime.sendMessage({code: 0}, function(response) {
         });
+        divLoop.style.display = switch_.checked ? "flex" : "none";
     });
 
     /** 周期标签 */
-    var labLoop = document.getElementById("labLoop");
+    divLoop.style.display = switch_.checked ? "flex" : "none";
     var time = localStorage.getItem("loop");
     labLoop.innerHTML = chrome.i18n.getMessage("labLoop") + "（" + (time - 0) / 60000 + "min）";
     labLoop.parentNode.setAttribute("title", chrome.i18n.getMessage("tipTitleLoop"));
@@ -35,18 +40,6 @@
         localStorage.setItem("loop", timeSlider.value);
         chrome.runtime.sendMessage({code: 0}, function(response) {
         });
-    });
-
-    /** 自动签到标签 */
-    var labSign = document.getElementById("labSign");
-    labSign.innerHTML = chrome.i18n.getMessage("labSign");
-    labSign.parentNode.setAttribute("title", chrome.i18n.getMessage("tipTitleSign"));
-    
-    /** 自动签到按钮 */
-    var sign = document.getElementById("sign");
-    sign.checked = localStorage.getItem("autoSign") == "true";
-    sign.addEventListener("change", function() {
-        localStorage.setItem("autoSign", sign.checked);
     });
 
     /** 评价标签 */

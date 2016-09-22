@@ -163,6 +163,21 @@ button {
     max-height: 277px;
 }
 
+#refresh {
+    background-color: black;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    line-height: 25px;
+    -webkit-transition: ease-out 0.5s;
+    transition: ease-out 0.5s;
+}
+
+#refresh:hover {
+    background-color: rgb(0, 175, 230);
+    color: white;
+}
+
 .item {
     background-color: rgb(0, 62, 90);
     color: white;

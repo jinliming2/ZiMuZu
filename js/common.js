@@ -51,4 +51,4 @@ var getQueryString = function(name) {
     } else {
         return "";
     }
-}
+};

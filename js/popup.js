@@ -33,19 +33,19 @@ var regShow = /<a href="(.+?)" title=".+?">(.+?)<\/a>/g;
 var getUserData = function(xmlHttp) {
     var json = JSON.parse(xmlHttp.responseText);
     if(json && json.status && json.status == 1 && json.data && json.data.userinfo) {
-        userHead.src = json.data.userinfo.avatar_t;
+        userHead.src = json.data.userinfo.avatar_s;
         userUsername.innerHTML = json.data.userinfo.nickname;
-        userLevel.innerHTML = json.data.userinfo.group_name;
-        userSign.innerHTML = chrome.i18n.getMessage("linkSignIn");
+        userLevel.innerHTML = json.data.userinfo.common_group_name;
+        userSign.innerHTML = chrome.i18n.getMessage("linkUserInfo");
         userSign.removeEventListener("click", jumpToLogIn);
-        userSign.addEventListener("click", jumpToSignIn);
+        userSign.addEventListener("click", jumpToUserInfo);
         btnFavourite.classList.remove("hide");
     } else {
         userHead.src = "./img/default_head.png";
         userUsername.innerHTML = chrome.i18n.getMessage("labLoggedOut");
         userLevel.innerHTML = "";
         userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
-        userSign.removeEventListener("click", jumpToSignIn);
+        userSign.removeEventListener("click", jumpToUserInfo);
         userSign.addEventListener("click", jumpToLogIn);
         btnFavourite.classList.add("hide");
     }
@@ -64,9 +64,9 @@ var jumpToLogIn = function() {
 /**
  * 跳转到签到页面
  */
-var jumpToSignIn = function() {
+var jumpToUserInfo = function() {
     chrome.tabs.create({
-        url: "http://www.zimuzu.tv/user/sign",
+        url: "http://www.zimuzu.tv/user/user",
         active: true
     });
 };
@@ -189,7 +189,7 @@ var getSchedule = function(xmlHttp) {
     //user information
     userUsername.innerHTML = chrome.i18n.getMessage("labLoading");
     userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
-    userSign.removeEventListener("click", jumpToSignIn);
+    userSign.removeEventListener("click", jumpToUserInfo);
     userSign.addEventListener("click", jumpToLogIn);
     request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null, getUserData);
     //load Schedule

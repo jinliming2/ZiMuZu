@@ -63,9 +63,9 @@
         "message": "去登录",
         "description": "跳转到登录"
     },
-    "linkSignIn": {
-        "message": "去签到",
-        "description": "跳转到签到"
+    "linkUserInfo": {
+        "message": "详情",
+        "description": "查看用户详情"
     },
     "tipInstallTitle": {
         "message": "安装成功",

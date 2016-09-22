@@ -12,9 +12,6 @@ if(localStorage.getItem("background") == null) {  //后台开关
 if(localStorage.getItem("list") == null) {  //列表
     localStorage.setItem("list", "[]");
 }
-if(localStorage.getItem("autoSign") == null) {  //启动浏览器自动签到
-    localStorage.setItem("autoSign", "true");
-}
 /**
  * 后台事件
  * @type {number|boolean}
@@ -24,32 +21,32 @@ var background = false;
  * 图片地址匹配
  * @type {RegExp}
  */
-var regImage = /<img src="(.+?)" \/>/;
+var regImage = /<a href="\/resource\/\d+"><img src="(.+?)" \/><span class="point"><em>(\d{1,2}\.?)<\/em>(\d+)<\/span><\/a>/;
 /**
  * 标题匹配
  * @type {RegExp}
  */
-var regTitle = /<h2>[ ]*<a href="(.+?)" target="_blank">(.+?)<\/a>/;
+var regTitle = /<strong><a href="\/resource\/(\d+)">【(.+?)】《(.+?)》<\/a><\/strong>/;
 /**
  * 更新匹配
  * @type {RegExp}
  */
-var regUpdated = /S(\d*)E(\d*)/;
+var regUpdated = /S(\d+)E(\d+)/;
 /**
  * 下一集匹配
  * @type {RegExp}
  */
-var regNext = /<font class="f2">(.+?)<\/font>/;
+var regNext = /<span class="corner prevue" play_time="(\d{10})"><\/span>/;
 /**
  * 状态匹配
  * @type {RegExp}
  */
-var regStatus = /<span class="ts">\((.+?)\)<\/span>/;
+var regStatus = /<span class="ts">(.+?)<\/span>/;
 /**
- * 时间匹配
- * @type {RegExp}
+ * 星期
+ * @type {string[]}
  */
-var regNextIsTime = /(\d{4})-(\d{2})-(\d{2})/;
+var weekday = ["日", "一", "二", "三", "四", "五", "六"];
 /**
  * 请求成功
  * @param xmlHttp {XMLHttpRequest} 请求对象
@@ -61,23 +58,22 @@ var success = function(xmlHttp) {
     today.setSeconds(0);
     today.setMilliseconds(0);
     var data = xmlHttp.responseText.replace(regBlankLine, "");
-    var index = data.indexOf("<ul class=\"user-favlist\">");
-    data = data.substring(index, data.indexOf("</ul>", index));
-    data = data.split("</li>");
+    data = data.split("<li class=\"clearfix\">");
     var old_obj = JSON.parse(localStorage.getItem("list"));
     var obj = [];
-    for(var i = 0; i < data.length; i++) {
-        //标题
+    for(var i = 1; i < data.length; i++) {
+        //标题、链接
         if(!regTitle.test(data[i])) {
             continue;
         }
         var link = null;
         link = regTitle.exec(data[i]);
-        var title = link[2].trim();
-        title = title.replace("】【", "] [").replace("【", "[").replace("】", "]").replace("》", "").replace("《", " ");
-        link = link[1].trim();
-        //图片
-        var image = regImage.exec(data[i])[1];
+        var title = "[" + link[2].trim() + "]" + link[3].trim();
+        link = "http://www.zimuzu.tv/resource/" + link[1].trim();
+        //图片、得分
+        var image = regImage.exec(data[i]);
+        var point = image[2].trim() + image[3].trim();
+        image = image[1];
         //更新到季集
         var updated = null;
         var updatedS = null;
@@ -92,12 +88,10 @@ var success = function(xmlHttp) {
         var next = null;
         var nextDays = null;
         if(regNext.test(data[i])) {  //下一集信息
-            next = regNext.exec(data[i])[1].trim();
+            next = new Date(regNext.exec(data[i])[1].trim() * 1000);
             //下一集剩余天数
-            if(regNextIsTime.test(next)) {
-                var t = regNextIsTime.exec(next);
-                nextDays = (new Date(t[1], t[2] - 1, t[3]) - today) / 86400000;
-            }
+            nextDays = (next - today) / 86400000;
+            next = next.getFullYear() + "-" + (next.getMonth() + 1) + "-" + next.getDate() + " " + weekday[next.getDay()];
         } else if(regStatus.test(data[i])) {  //状态信息
             next = regStatus.exec(data[i])[1].trim();
         }
@@ -173,10 +167,6 @@ chrome.notifications.onButtonClicked.addListener(function(notificationId, button
 });
 //启动后直接查询一次
 request("GET", "http://www.zimuzu.tv/user/fav", null, success);
-//启动后请求一次用户数据，起到签到的作用（现在是登录）
-if(localStorage.getItem("autoSign") == "true") {
-    request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null);
-}
 //启动后设置后台查询
 setLoop();
 

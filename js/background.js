@@ -156,6 +156,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
             setLoop();
             sendResponse(true);
             break;
+        case 1:  //立即刷新
+            request("GET", "http://www.zimuzu.tv/user/fav", null, function(xmlHttp) {
+                success(xmlHttp);
+                sendResponse(true);
+            }, function() {
+                sendResponse(false);
+            });
+            return true;
+            break;
     }
 });
 //Notification Button Clicked

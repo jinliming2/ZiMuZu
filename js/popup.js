@@ -9,6 +9,9 @@ var userSign = document.getElementById("sign");
 var btnGoTo = document.getElementById("go_to");
 var btnFavourite = document.getElementById("favourite");
 var btnSchedule = document.getElementById("schedule");
+var divList = document.getElementById("list");
+var labRefresh = document.getElementById("refresh");
+var searchInput = document.getElementById("search_input");
 
 /**
  * 今天的播出表
@@ -124,37 +127,13 @@ var getSchedule = function(xmlHttp) {
     }
 };
 
-/**
- * 加载页面
- */
-(function() {
-    //Buttons
-    btnGoTo.innerHTML = chrome.i18n.getMessage("btnGoTo");
-    btnFavourite.innerHTML = chrome.i18n.getMessage("btnFavourite");
-    btnSchedule.innerHTML = chrome.i18n.getMessage("btnSchedule");
-    //Events
-    btnGoTo.addEventListener("click", function() {
-        chrome.tabs.create({
-            url: "http://www.zimuzu.tv/",
-            active: true
-        });
-    });
-    btnFavourite.addEventListener("click", function() {
-        chrome.tabs.create({
-            url: "http://www.zimuzu.tv/user/fav",
-            active: true
-        });
-    });
-    btnSchedule.addEventListener("click", function() {
-        chrome.tabs.create({
-            url: "http://www.zimuzu.tv/tv/eschedule",
-            active: true
-        });
-    });
-    //list
-    var divList = document.getElementById("list");
+var loadList = function() {
+    var items = document.querySelectorAll(".item");
+    for(var i = 0; i < items.length; i++) {
+        divList.removeChild(items[i]);
+    }
     var list = JSON.parse(localStorage.getItem("list"));
-    for(var i = 0; list && i < list.length; i++) {
+    for(i = 0; list && i < list.length; i++) {
         var item = document.createElement("div");
         var image = document.createElement("img");
         var title = document.createElement("div");
@@ -186,14 +165,8 @@ var getSchedule = function(xmlHttp) {
         });
         divList.appendChild(item);
     }
-    //user information
-    userUsername.innerHTML = chrome.i18n.getMessage("labLoading");
-    userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
-    userSign.removeEventListener("click", jumpToUserInfo);
-    userSign.addEventListener("click", jumpToLogIn);
-    request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null, getUserData);
-    //load Schedule
-    request("GET", "http://www.zimuzu.tv/tv/eschedule", null, getSchedule);
+    //Hide Refresh
+    divList.scrollTop = 25;
     //load image
     setTimeout(function() {
         var img = document.getElementsByTagName("img");
@@ -203,6 +176,62 @@ var getSchedule = function(xmlHttp) {
             }
         }
     }, 0);
+};
+
+var refresh = function() {
+    labRefresh.removeEventListener("click", refresh);
+    labRefresh.innerHTML = chrome.i18n.getMessage("labRefreshing");
+    chrome.runtime.sendMessage({code: 1}, function(result) {
+        if(result) {
+            loadList();
+            labRefresh.innerHTML = chrome.i18n.getMessage("labRefresh");
+        } else {
+            labRefresh.innerHTML = chrome.i18n.getMessage("labRefreshError");
+        }
+        labRefresh.addEventListener("click", refresh);
+    });
+};
+
+/**
+ * 加载页面
+ */
+(function() {
+    //i18n
+    btnGoTo.innerHTML = chrome.i18n.getMessage("btnGoTo");
+    btnFavourite.innerHTML = chrome.i18n.getMessage("btnFavourite");
+    btnSchedule.innerHTML = chrome.i18n.getMessage("btnSchedule");
+    searchInput.setAttribute("placeholder", chrome.i18n.getMessage("iptSearch"));
+    labRefresh.innerHTML = chrome.i18n.getMessage("labRefresh");
+    //Events
+    btnGoTo.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/",
+            active: true
+        });
+    });
+    btnFavourite.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/user/fav",
+            active: true
+        });
+    });
+    btnSchedule.addEventListener("click", function() {
+        chrome.tabs.create({
+            url: "http://www.zimuzu.tv/tv/eschedule",
+            active: true
+        });
+    });
+    labRefresh.addEventListener("click", refresh);
+    //list
+    loadList();
+    //user information
+    userUsername.innerHTML = chrome.i18n.getMessage("labLoading");
+    userSign.innerHTML = chrome.i18n.getMessage("linkLogIn");
+    userSign.removeEventListener("click", jumpToUserInfo);
+    userSign.addEventListener("click", jumpToLogIn);
+    request("GET", "http://www.zimuzu.tv/user/login/getCurUserTopInfo", null, getUserData);
+    //load Schedule
+    request("GET", "http://www.zimuzu.tv/tv/eschedule", null, getSchedule);
 })();
 
 /**
@@ -210,14 +239,13 @@ var getSchedule = function(xmlHttp) {
  */
 (function () {
     var div = document.getElementById("search");
-    var input = document.getElementById("search_input");
     div.addEventListener("click", function () {
-        input.focus();
+        searchInput.focus();
     });
-    input.addEventListener("keydown", function(e) {
-        if(e.keyCode == 13 && input.value.length > 0) {
+    searchInput.addEventListener("keydown", function(e) {
+        if(e.keyCode == 13 && searchInput.value.length > 0) {
             chrome.tabs.create({
-                url: "http://www.zimuzu.tv/search?keyword=" + input.value,
+                url: "http://www.zimuzu.tv/search?keyword=" + searchInput.value,
                 active: true
             });
         }

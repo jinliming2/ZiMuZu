@@ -33,6 +33,7 @@
     "permissions": [
         "*://*.zimuzu.tv/*",
         "*://tu.rrsub.com/*",
+        "*://www.zmz2017.com/*",
         "notifications"
     ],
     "short_name": "zimuzu.tv"

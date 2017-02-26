@@ -245,7 +245,8 @@ var refresh = function() {
     searchInput.addEventListener("keydown", function(e) {
         if(e.keyCode == 13 && searchInput.value.length > 0) {
             chrome.tabs.create({
-                url: "http://www.zimuzu.tv/search?keyword=" + searchInput.value,
+                //url: "http://www.zimuzu.tv/search?keyword=" + searchInput.value,
+                url: "http://www.zmz2017.com/search?keyword=" + searchInput.value,
                 active: true
             });
         }

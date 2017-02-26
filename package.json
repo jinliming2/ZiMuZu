@@ -1,0 +1,23 @@
+{
+  "name": "zimuzu",
+  "version": "1.1.2",
+  "description": "A Google Chrome Extension for zimuzu.tv.",
+  "main": "grunt",
+  "scripts": {
+    "pack": "grunt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jinliming2/ZiMuZu.git"
+  },
+  "author": "Liming Jin, jinliming2@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jinliming2/ZiMuZu/issues"
+  },
+  "homepage": "https://github.com/jinliming2/ZiMuZu#readme",
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-compress": "^1.4.1"
+  }
+}
